@@ -15,7 +15,8 @@ export default function TabTwoScreen() {
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
               <Image
-                source={require('@/assets/images/ModernGym.png')}
+                source={require("@/assets/images/ModernGym.png")}
+                style={styles.reactLogo}
               />
         }>
       <ThemedView style={styles.titleContainer}>
@@ -24,10 +25,10 @@ export default function TabTwoScreen() {
           style={{
             fontFamily: Fonts.rounded,
           }}>
-          Exercise Library
+          Workout Library
         </ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
+      <ThemedText>Welcome to the best library of tutorials to achive your goal.</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -97,6 +98,7 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
+    color: '#808080',
     bottom: -90,
     left: -35,
     position: 'absolute',
@@ -104,5 +106,12 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  reactLogo: {
+    height: 178,
+    width: 500,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
   },
 });
