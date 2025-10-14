@@ -28,12 +28,12 @@ export default function TabTwoScreen() {
           Workout Library
         </ThemedText>
       </ThemedView>
-      <ThemedText>Welcome to the best library of tutorials to achive your goal.</ThemedText>
+      <ThemedText>Welcome to your Ultimate Resource for Mastering Skills and Reaching Your Goals.</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
           <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
+          <ThemedText type="defaultSemiBold">app/(tabs)/Workout.tsx</ThemedText>
         </ThemedText>
         <ThemedText>
           The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
@@ -98,7 +98,7 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
+    color: '#364156',
     bottom: -90,
     left: -35,
     position: 'absolute',
