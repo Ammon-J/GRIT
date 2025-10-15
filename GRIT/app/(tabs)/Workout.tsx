@@ -29,17 +29,26 @@ export default function TabTwoScreen() {
         </ThemedText>
       </ThemedView>
       <ThemedText>Welcome to your Ultimate Resource for Mastering Skills and Reaching Your Goals.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/Workout.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
+      <Collapsible title="Workout Routines">
+        <ThemedText type="defaultSemiBold">Upper & Lower:{' '}</ThemedText>
+        <ThemedText>A balanced mix of upper and lower body workouts designed to build strength, improve endurance, and enhance overall fitness. (4 days on and 3 days off)</ThemedText>
+
+<ThemedText>{' '}</ThemedText> 
+
+        <ThemedText type="defaultSemiBold">Push,Pull, and Legs:{' '}</ThemedText>
+<ThemedText> A full-body training split that targets all major muscle groups — push days focus on chest, shoulders, and triceps, pull days hit the back and biceps, and leg days build strength in the lower body. (4 days on and 3 days off) </ThemedText>
+
+<ThemedText>{' '}</ThemedText> 
+
+<ThemedText type="defaultSemiBold">Arnold Split:{' '}</ThemedText>
+<ThemedText> A classic six-day routine popularized by Arnold Schwarzenegger, targeting each muscle group twice a week with focused push-pull and upper-lower variations for maximum growth and symmetry. </ThemedText>
+
+<ThemedText>{' '}</ThemedText>
+
+<ThemedText type="defaultSemiBold">Arnold Split:{' '}</ThemedText>
+<ThemedText> A classic six-day routine popularized by Arnold Schwarzenegger, targeting each muscle group twice a week with focused push-pull and upper-lower variations for maximum growth and symmetry. </ThemedText>    
+        
+        <ExternalLink href="https://www.muscleandstrength.com/workout-routines">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
