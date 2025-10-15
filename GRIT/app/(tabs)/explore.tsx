@@ -8,6 +8,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
+import { Link } from 'expo-router';
 
 export default function TabTwoScreen() {
   return (
@@ -41,6 +42,15 @@ export default function TabTwoScreen() {
         <ExternalLink href="https://docs.expo.dev/router/introduction">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
+      </Collapsible>
+      <Collapsible title="Exercises">
+        <ThemedText>Select an exercise to learn proper form:</ThemedText>
+        <Link href="/exercise/bench-press">
+          <ThemedText type="link">Bench Press</ThemedText>
+        </Link>
+        <Link href="/exercise/pull-ups">
+          <ThemedText type="link">Pull Ups</ThemedText>
+        </Link>
       </Collapsible>
       <Collapsible title="Android, iOS, and web support">
         <ThemedText>
