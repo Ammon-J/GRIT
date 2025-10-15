@@ -16,7 +16,8 @@ export default function TabTwoScreen() {
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
               <Image
-                source={require('@/assets/images/ModernGym.png')}
+                source={require("@/assets/images/ModernGym.png")}
+                style={styles.reactLogo}
               />
         }>
       <ThemedView style={styles.titleContainer}>
@@ -25,21 +26,30 @@ export default function TabTwoScreen() {
           style={{
             fontFamily: Fonts.rounded,
           }}>
-          Exercise Library
+          Workout Library
         </ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
+      <ThemedText>Welcome to your Ultimate Resource for Mastering Skills and Reaching Your Goals.</ThemedText>
+      <Collapsible title="Workout Routines">
+        <ThemedText type="defaultSemiBold">Upper & Lower:{' '}</ThemedText>
+        <ThemedText>A balanced mix of upper and lower body workouts designed to build strength, improve endurance, and enhance overall fitness. (4 days on and 3 days off)</ThemedText>
+
+<ThemedText>{' '}</ThemedText> 
+
+        <ThemedText type="defaultSemiBold">Push,Pull, and Legs:{' '}</ThemedText>
+<ThemedText> A full-body training split that targets all major muscle groups — push days focus on chest, shoulders, and triceps, pull days hit the back and biceps, and leg days build strength in the lower body. (4 days on and 3 days off) </ThemedText>
+
+<ThemedText>{' '}</ThemedText> 
+
+<ThemedText type="defaultSemiBold">Arnold Split:{' '}</ThemedText>
+<ThemedText> A classic six-day routine popularized by Arnold Schwarzenegger, targeting each muscle group twice a week with focused push-pull and upper-lower variations for maximum growth and symmetry. </ThemedText>
+
+<ThemedText>{' '}</ThemedText>
+
+<ThemedText type="defaultSemiBold">Bro Split:{' '}</ThemedText>
+<ThemedText> A classic 5 days split that focuses on each body group individually. Good for gaining strength or mass..(Leg day, Chest day, Arm day, Shoulder day, Back Day) </ThemedText>    
+        
+        <ExternalLink href="https://www.muscleandstrength.com/workout-routines">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
@@ -107,7 +117,7 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
+    color: '#364156',
     bottom: -90,
     left: -35,
     position: 'absolute',
@@ -115,5 +125,12 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  reactLogo: {
+    height: 178,
+    width: 500,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
   },
 });

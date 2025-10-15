@@ -25,6 +25,9 @@ Python
 * [ ] Second feature here
 * [ ] Keep going ....
 
+## GutHub Usage
+1. Create a branch through VSCode
+2. Commit your
 ## Team Communication
 We are using Discord to communicate
 
