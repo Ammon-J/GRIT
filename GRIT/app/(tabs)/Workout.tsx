@@ -45,8 +45,8 @@ export default function TabTwoScreen() {
 
 <ThemedText>{' '}</ThemedText>
 
-<ThemedText type="defaultSemiBold">Arnold Split:{' '}</ThemedText>
-<ThemedText> A classic six-day routine popularized by Arnold Schwarzenegger, targeting each muscle group twice a week with focused push-pull and upper-lower variations for maximum growth and symmetry. </ThemedText>    
+<ThemedText type="defaultSemiBold">Bro Split:{' '}</ThemedText>
+<ThemedText> A classic 5 days split that focuses on each body group individually. Good for gaining strength or mass..(Leg day, Chest day, Arm day, Shoulder day, Back Day) </ThemedText>    
         
         <ExternalLink href="https://www.muscleandstrength.com/workout-routines">
           <ThemedText type="link">Learn more</ThemedText>
