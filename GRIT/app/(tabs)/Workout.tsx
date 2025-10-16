@@ -34,7 +34,7 @@ export default function TabTwoScreen() {
         <View style={styles.buttonWrapper}>
           <Button
             title="Workout Library"
-            onPress={() => navigation.navigate("Workout Library" as never)} // ✅ navigation works now
+            onPress={() => navigation.navigate("Workout library" as never)} // ✅ navigation works now
             color="#1E40AF"
           />
         </View>
