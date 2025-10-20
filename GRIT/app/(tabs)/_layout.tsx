@@ -22,7 +22,7 @@ export default function TabLayout() {
   }, []);
   
   if (!ready) return null; // could return a splash/loader
-  if (!signedIn) return <Redirect href="/sign-in" />;
+  if (signedIn) return <Redirect href="/sign-in" />;
 
   return (
     <Tabs
