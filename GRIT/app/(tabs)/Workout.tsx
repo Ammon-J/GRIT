@@ -8,59 +8,39 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
-import { Link } from 'expo-router';
 
 export default function TabTwoScreen() {
+  const navigation = useNavigation();
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
       headerImage={
-              <Image
-                source={require("@/assets/images/ModernGym.png")}
-                style={styles.reactLogo}
-              />
-        }>
+        <Image
+          source={require("@/assets/images/ModernGym.png")}
+          style={styles.headerImage}
+        />
+      }
+    >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
+        <ThemedText type="title" style={styles.titleText}>
           Workout Library
         </ThemedText>
       </ThemedView>
       <ThemedText>Welcome to your Ultimate Resource for Mastering Skills and Reaching Your Goals.</ThemedText>
-      <Collapsible title="Workout Routines">
-        <ThemedText type="defaultSemiBold">Upper & Lower:{' '}</ThemedText>
-        <ThemedText>A balanced mix of upper and lower body workouts designed to build strength, improve endurance, and enhance overall fitness. (4 days on and 3 days off)</ThemedText>
-
-<ThemedText>{' '}</ThemedText> 
-
-        <ThemedText type="defaultSemiBold">Push,Pull, and Legs:{' '}</ThemedText>
-<ThemedText> A full-body training split that targets all major muscle groups — push days focus on chest, shoulders, and triceps, pull days hit the back and biceps, and leg days build strength in the lower body. (4 days on and 3 days off) </ThemedText>
-
-<ThemedText>{' '}</ThemedText> 
-
-<ThemedText type="defaultSemiBold">Arnold Split:{' '}</ThemedText>
-<ThemedText> A classic six-day routine popularized by Arnold Schwarzenegger, targeting each muscle group twice a week with focused push-pull and upper-lower variations for maximum growth and symmetry. </ThemedText>
-
-<ThemedText>{' '}</ThemedText>
-
-<ThemedText type="defaultSemiBold">Bro Split:{' '}</ThemedText>
-<ThemedText> A classic 5 days split that focuses on each body group individually. Good for gaining strength or mass..(Leg day, Chest day, Arm day, Shoulder day, Back Day) </ThemedText>    
-        
-        <ExternalLink href="https://www.muscleandstrength.com/workout-routines">
+      <Collapsible title="File-based routing">
+        <ThemedText>
+          This app has two screens:{' '}
+          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
+          <ThemedText type="defaultSemiBold">app/(tabs)/Workout.tsx</ThemedText>
+        </ThemedText>
+        <ThemedText>
+          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
+          sets up the tab navigator.
+        </ThemedText>
+        <ExternalLink href="https://docs.expo.dev/router/introduction">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Exercises">
-        <ThemedText>Select an exercise to learn proper form:</ThemedText>
-        <Link href="/exercise/bench-press">
-          <ThemedText type="link">Bench Press</ThemedText>
-        </Link>
-        <Link href="/exercise/pull-ups">
-          <ThemedText type="link">Pull Ups</ThemedText>
-        </Link>
       </Collapsible>
       <Collapsible title="Android, iOS, and web support">
         <ThemedText>
@@ -117,20 +97,28 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#364156',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+    width: "100%",
+    height: 200,
+    resizeMode: "cover",
   },
   titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+    padding: 16,
+    alignItems: "center",
   },
-  reactLogo: {
-    height: 178,
-    width: 500,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  titleText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+    fontFamily: Fonts.rounded,
+  },
+  buttonContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 40,
+    gap: 20,
+  },
+  buttonWrapper: {
+    width: "70%",
   },
 });
