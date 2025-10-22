@@ -20,7 +20,7 @@ export default function TabTwoScreen() {
       headerImage={
         <Image
           source={require("@/assets/images/ModernGym.png")}
-          style={styles.headerImage}
+          style={styles.reactLogo}
         />
       }
     >
@@ -37,7 +37,7 @@ export default function TabTwoScreen() {
           <Button
             title="Workout Library"
             onPress={() => navigation.navigate("Workout library" as never)}
-            color="#1E40AF"
+            color="#fbfbfdff"
           />
         </View>
 
@@ -45,7 +45,7 @@ export default function TabTwoScreen() {
           <Button
             title="Random Workouts"
             onPress={() => navigation.navigate("Random Workouts" as never)}
-            color="#15803D"
+            color="#fcfefdff"
           />
         </View>
       </View>
@@ -79,5 +79,18 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     width: "70%",
+    borderWidth: 2, // thickness of the border
+    borderColor: '#f7f6f8ff', // border color
+    borderRadius: 8, // rounded corners
+    overflow: 'hidden',
+    backgroundColor:'#4425f5ff'
+  },
+
+  reactLogo: {
+    height: 178,
+    width: 500,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
   },
 });

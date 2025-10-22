@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { View, Text, Platform, StyleSheet } from 'react-native';
 
 import { Collapsible } from '@/components/ui/collapsible';
 import { ExternalLink } from '@/components/external-link';
@@ -56,14 +56,16 @@ export default function TabTwoScreen() {
 
       </Collapsible>
       <Collapsible title="Guidelines">
-          Each workout will vary between 45 minutes to 90 minutes.{' '}
-          <ul className="list-disc list-inside mt-2">
-    <li>Warm up before starting</li>
-    <li>Rest 60–90 seconds between sets</li>
-    <li>Focus on form over weight</li>
-    <li>Stay hydrated throughout</li>
-          </ul>
-      </Collapsible>
+  <ThemedText>
+    Each workout will vary between 45 minutes to 90 minutes.
+  </ThemedText>
+  <View style={{ marginTop: 8, paddingLeft: 16 }}>
+    <Text>• Warm up before starting</Text>
+    <Text>• Rest 60–90 seconds between sets</Text>
+    <Text>• Focus on form over weight</Text>
+    <Text>• Stay hydrated throughout</Text>
+  </View>
+</Collapsible>
       <Collapsible title="Images">
         <ThemedText>
           For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}

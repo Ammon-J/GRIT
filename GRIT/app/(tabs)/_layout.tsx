@@ -22,7 +22,7 @@ export default function TabLayout() {
   }, []);
   
   if (!ready) return null; // could return a splash/loader
-  if (signedIn) return <Redirect href="/sign-in" />;
+  if (!signedIn) return <Redirect href="/sign-in" />;
 
   return (
     <Tabs
@@ -34,14 +34,14 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'Dashboard',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="workouts"
         options={{
-          title: 'Explore',
+          title: 'Workouts',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
