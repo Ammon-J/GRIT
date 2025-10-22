@@ -1,8 +1,8 @@
 // InfiniteVideoScroll.tsx
 import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { GestureHandlerRootView, Gesture, GestureDetector, Directions } from 'react-native-gesture-handler';
-import { GesturePath, Cursor } from "react-native-gesture-detector";
+import { GestureHandlerRootView, Gesture, Directions } from 'react-native-gesture-handler';
+import GestureDetector, { GesturePath, Cursor } from "react-native-gesture-detector";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -84,7 +84,6 @@ export default function Vid() {
               setGesture(null);
             }}
             gestures={gestures}>
-      <Animated.View style={[styles.container, animatedStyles]} />
     </GestureDetector>
   )
 }
