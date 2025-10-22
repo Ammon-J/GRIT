@@ -9,7 +9,21 @@ import Animated, {
   withTiming,
   withSpring
 } from 'react-native-reanimated';
+import { WebView } from 'react-native-webview';
 
+const YouTubeEmbed = ({ videoId }: { videoId: string }) => {
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?controls=1&autoplay=0`;
+
+  return (
+    <View style={styles.container}>
+      <WebView
+        source={{ uri: embedUrl }}
+        style={styles.webview}
+        allowsFullscreenVideo
+      />
+    </View>
+  );
+};
 const { height, width } = Dimensions.get('window');
 
 const colors = ['#FF6B6B', '#6BCB77', '#4D96FF', '#FFD93D'];
@@ -31,6 +45,11 @@ const gestures = {
     {x: 0, y: 0},
     {x: 0, y: 10}
   ]
+}
+
+function Speak()
+{
+  console.log("No");
 }
 
 export default function Vid() {
@@ -74,16 +93,11 @@ export default function Vid() {
   const [gesture, setGesture] = useState(null);
 
   return (
-    <GestureDetector onGestureFinish={gesture => Alert.alert(`Gesture ${gesture} finished!`)}
-            onProgress={({ gesture, progress }) => {
-              setProgress(progress);
-              setGesture(gesture);
-            }}
-            onPanRelease={() => {
-              setProgress(null);
-              setGesture(null);
-            }}
+    <GestureDetector onGestureFinish={gesture => Speak()}
             gestures={gestures}>
+              {({}) => (
+    <YouTubeEmbed videoId="ckZlj2p8W9M" />
+    )}
     </GestureDetector>
   )
 }
