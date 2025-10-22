@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { GestureHandlerRootView, Gesture, GestureDetector, Directions } from 'react-native-gesture-handler';
+import { GesturePath, Cursor } from "react-native-gesture-detector";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -12,6 +13,25 @@ import Animated, {
 const { height, width } = Dimensions.get('window');
 
 const colors = ['#FF6B6B', '#6BCB77', '#4D96FF', '#FFD93D'];
+
+const gestures = {
+  "Left": [
+    {x: 0, y: 0},
+    {x: -10, y: 0}
+  ],
+  "Right": [
+    {x: 0, y: 0},
+    {x: 10, y: 0}
+  ],
+  "Up": [
+    {x: 0, y: 0},
+    {x: 0, y: -10}
+  ],
+  "Down": [
+    {x: 0, y: 0},
+    {x: 0, y: 10}
+  ]
+}
 
 export default function Vid() {
   const isPressed = useSharedValue(false);
@@ -49,9 +69,21 @@ export default function Vid() {
     isPressed.value = false;
   })
 
+  const MultipleScreen = () => {
+  const [progress, setProgress] = useState(null);
+  const [gesture, setGesture] = useState(null);
 
   return (
-    <GestureDetector gesture={gesture}>
+    <GestureDetector onGestureFinish={gesture => Alert.alert(`Gesture ${gesture} finished!`)}
+            onProgress={({ gesture, progress }) => {
+              setProgress(progress);
+              setGesture(gesture);
+            }}
+            onPanRelease={() => {
+              setProgress(null);
+              setGesture(null);
+            }}
+            gestures={gestures}>
       <Animated.View style={[styles.container, animatedStyles]} />
     </GestureDetector>
   )

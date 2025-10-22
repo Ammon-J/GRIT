@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-native-gesture-detector": "^1.1.2"
+  }
+}
