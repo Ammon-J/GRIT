@@ -14,7 +14,7 @@ import { WebView } from 'react-native-webview';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
 const YouTubeEmbed = ({ videoId }: { videoId: string }) => {
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?controls=1&autoplay=0`;
+  const embedUrl = `https://www.youtube.com/shorts/${videoId}?controls=1&autoplay=0`;
 
   return (
     <View style={styles.container}>
@@ -28,7 +28,7 @@ const YouTubeEmbed = ({ videoId }: { videoId: string }) => {
 };
 
 export default function ScrollVideos() {
-  const [videoId, setVideoId] = useState("dQw4w9WgXcQ");
+  // const [videoId, setVideoId] = useState("dQw4w9WgXcQ");
 
   const position = useSharedValue(0);
   const flingUp = Gesture.Fling()
@@ -41,7 +41,7 @@ export default function ScrollVideos() {
         .direction(Directions.DOWN)
         .onStart((e) => {
             console.log("Swiped down");
-            setVideoId("newVideoId");
+            // setVideoId("newVideoId");
         });
     const composed = Gesture.Simultaneous(flingUp, flingDown)
 
@@ -54,7 +54,7 @@ export default function ScrollVideos() {
         <SafeAreaView style={styles.container}>
             <GestureDetector gesture={composed}>
               <View collapsable={false} style={{ flex: 1 }}>
-                <WebView source={{ uri: embedUrl }}  style={{ flex: 1 }}  allowsFullscreenVideo/>
+                <YouTubeEmbed videoId="7ue_Oh0lBh0" />
               </View>
             </GestureDetector>
         </SafeAreaView>
