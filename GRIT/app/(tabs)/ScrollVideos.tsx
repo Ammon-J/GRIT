@@ -29,6 +29,7 @@ const YouTubeEmbed = ({ videoId }: { videoId: string }) => {
 
 export default function ScrollVideos() {
   // const [videoId, setVideoId] = useState("dQw4w9WgXcQ");
+  var currentId: string = "ckZlj2p8W9M";
 
   const position = useSharedValue(0);
   const flingUp = Gesture.Fling()
@@ -47,14 +48,12 @@ export default function ScrollVideos() {
 
   const urls: String[] = ["ckZlj2p8W9M","gpGUbcRwy3g","KKgpIukWJdM"];
 
-  var whatever = 0;
-
   return (
     <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
             <GestureDetector gesture={composed}>
               <View collapsable={false} style={{ flex: 1 }}>
-                <YouTubeEmbed videoId="7ue_Oh0lBh0" />
+                <YouTubeEmbed videoId={currentId} />
               </View>
             </GestureDetector>
         </SafeAreaView>
