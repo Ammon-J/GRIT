@@ -23,7 +23,9 @@ const YouTubeEmbed = ({ videoId }: { videoId: string }) => {
       <WebView
         source={{ uri: embedUrl }}
         style={styles.webview}
-        allowsFullscreenVideo
+        allowsFullscreenVideo={false}
+        scrollEnabled={false}
+        pointerEvents="none"
       />
     </View>
   );
@@ -41,7 +43,7 @@ function updateVideoId(x: number): number
 }
 
 export default function ScrollVideos() {
-  const [videoId, setVideoId] = useState("dQw4w9WgXcQ");
+  const [videoId, setVideoId] = useState("t34muYc261o");
 
   const position = useSharedValue(0);
   const flingUp = Gesture.Fling()
@@ -49,17 +51,15 @@ export default function ScrollVideos() {
     .onStart((e) => {
       //position.value = withTiming(position.value - 100, { duration: 100 });
       console.log("Swiped up");
-      setVideoId("gpGUbcRwy3g");
+      setVideoId("3KtWQJuRSmI");
     });
     const flingDown = Gesture.Fling()
         .direction(Directions.DOWN)
         .onStart((e) => {
             console.log("Swiped down");
-            setVideoId("ckZlj2p8W9M"); // Change when we make an API call
+            setVideoId("Ll0RattR1DE"); // Change when we make an API call
         });
     const composed = Gesture.Simultaneous(flingUp, flingDown)
-
-  const urls: String[] = ["ckZlj2p8W9M","gpGUbcRwy3g","KKgpIukWJdM"];
 
   return (
     <SafeAreaProvider>
