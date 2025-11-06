@@ -15,7 +15,9 @@ import { useState } from 'react';
 
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
-const YouTubeEmbed = ({ videoId }: { videoId: string }) => {
+let videoId = "t34muYc261o";
+
+const YouTubeEmbed = () => {
   const embedUrl = `https://www.youtube.com/shorts/${videoId}?controls=1&autoplay=0`;
 
   return (
@@ -31,33 +33,27 @@ const YouTubeEmbed = ({ videoId }: { videoId: string }) => {
   );
 };
 
-function updateVideoId(x: number): number
+function updateVideoId(x: String)
 {
-  if (x < 3)
-  {
-    return x + 1;
-  }
-  else {
-    return 0;
-  }
+  videoId = "3KtWQJuRSmI";
 }
 
 export default function ScrollVideos() {
-  const [videoId, setVideoId] = useState("t34muYc261o");
+  // const [videoId, setVideoId] = useState("t34muYc261o");
 
-  const position = useSharedValue(0);
+  // const position = useSharedValue(0);
   const flingUp = Gesture.Fling()
     .direction(Directions.UP)
     .onStart((e) => {
       //position.value = withTiming(position.value - 100, { duration: 100 });
       console.log("Swiped up");
-      setVideoId("3KtWQJuRSmI");
+      updateVideoId("3KtWQJuRSmI");
     });
     const flingDown = Gesture.Fling()
         .direction(Directions.DOWN)
         .onStart((e) => {
             console.log("Swiped down");
-            setVideoId("Ll0RattR1DE"); // Change when we make an API call
+            updateVideoId("Ll0RattR1DE"); // Change when we make an API call
         });
     const composed = Gesture.Simultaneous(flingUp, flingDown)
 
@@ -66,7 +62,7 @@ export default function ScrollVideos() {
         <SafeAreaView style={styles.container}>
             <GestureDetector gesture={composed}>
               <View collapsable={false} style={{ flex: 1 }}>
-                <YouTubeEmbed videoId={videoId} />
+                <YouTubeEmbed/>
               </View>
             </GestureDetector>
         </SafeAreaView>
