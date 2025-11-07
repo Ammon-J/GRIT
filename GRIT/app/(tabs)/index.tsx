@@ -1,5 +1,6 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -8,6 +9,8 @@ import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
 
 export default function HomeScreen() {
+  const [showMusicControl, setShowMusicControl] = useState(true); // This is just so we can hide this if you want
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -65,6 +68,11 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
+      {showMusicControl ? ( <View />) : (
+        <View style={styles.musicControl}>
+
+        </View>
+      )}
     </ParallaxScrollView>
   );
 }
@@ -86,4 +94,11 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
   },
+  musicControl: {
+    height: 50, // So, we can make this variable, or not
+    width: 50,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+  }
 });
