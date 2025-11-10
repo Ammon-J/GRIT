@@ -1,3 +1,7 @@
+import { useAudioPlayer } from 'expo-audio';
+
+const audioSource = require('@/assets/audio/Phon.mp3');
+
 import React from 'react';
 import { View, Button, Platform, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -13,6 +17,9 @@ import { Fonts } from '@/constants/theme';
 
 export default function TabTwoScreen() {
   const navigation = useNavigation();
+  const player = useAudioPlayer(audioSource);
+
+  player.play();
 
   return (
     <ParallaxScrollView
