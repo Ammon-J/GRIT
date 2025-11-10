@@ -12,8 +12,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { WebView } from 'react-native-webview';
 
-import { scheduleOnRN } from 'react-native-worklets';
-
 import { useRef, useState } from 'react';
 
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
@@ -24,8 +22,13 @@ function createEmbedUrl(vidId: string) {
 
 export default function ScrollVideos() {
   // const webViewRef = useRef<any | null>(null);
-  // const [videoId, setVideoId] = useState("t34muYc261o");
   const [embedUrl, setEmbedUrl] = useState(`https://www.youtube.com/shorts/t34muYc261o?controls=1&autoplay=0`);
+
+  // Helper to update the embed URL from the JS thread. Gesture handlers run as worklets
+  // on the UI thread, so use runOnJS(updateEmbed)('vid') to call this safely.
+  const updateEmbed = (id: string) => {
+    setEmbedUrl(createEmbedUrl(id));
+  };
 
   const YouTubeEmbed = () => {
 
@@ -47,16 +50,15 @@ export default function ScrollVideos() {
     .direction(Directions.UP)
     .onStart(() => {
       //position.value = withTiming(position.value - 100, { duration: 100 });
-      console.log("Swiped up");
-      setVideoId("3KtWQJuRSmI"); // ScheduleOnRN did not fix the crash
-      setEmbedUrl(createEmbedUrl(videoId));
+      console.log('Swiped up');
+      // Call the JS-thread updater with the new video id
+      runOnJS(updateEmbed)('3KtWQJuRSmI');
     });
     const flingDown = Gesture.Fling()
         .direction(Directions.DOWN)
         .onStart((e) => {
-            console.log("Swiped down");
-            setVideoId("Ll0RattR1DE"); // Change when we make an API call
-            setEmbedUrl(createEmbedUrl(videoId));
+            console.log('Swiped down');
+            runOnJS(updateEmbed)('Ll0RattR1DE'); // Change when we make an API call
         });
     const composed = Gesture.Simultaneous(flingUp, flingDown)
 
