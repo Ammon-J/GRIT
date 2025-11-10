@@ -34,7 +34,7 @@ export default function TabTwoScreen() {
       {/* Title */}
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title" style={styles.titleText}>
-          Workout Library
+          Workout Hub
         </ThemedText>
       </ThemedView>
 
@@ -50,8 +50,8 @@ export default function TabTwoScreen() {
 
         <View style={styles.buttonWrapper}>
           <Button
-            title="Random Workouts"
-            onPress={() => navigation.navigate("Random Workouts" as never)}
+            title="Infinte Scroll"
+            onPress={() => navigation.navigate("InfiniteScroll" as never)}
             color="#fcfefdff"
           />
         </View>
