@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
   },
   workoutGroup: {
     marginVertical: 10,
-    backgroundColor: '#2b2b2b20',
+    backgroundColor: '#A1CEDC',
     borderRadius: 10,
     padding: 10,
   },
   exerciseCard: {
-    backgroundColor: '#f4f4f420',
+    backgroundColor: '#A1CEDC',
     borderRadius: 6,
     marginVertical: 4,
     padding: 6,
