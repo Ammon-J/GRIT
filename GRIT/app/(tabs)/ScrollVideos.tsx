@@ -8,8 +8,8 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
-  runOnJS,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { WebView } from 'react-native-webview';
 
 import { useRef, useState } from 'react';
@@ -52,13 +52,13 @@ export default function ScrollVideos() {
       //position.value = withTiming(position.value - 100, { duration: 100 });
       console.log('Swiped up');
       // Call the JS-thread updater with the new video id
-      runOnJS(updateEmbed)('3KtWQJuRSmI');
+      scheduleOnRN(updateEmbed, '3KtWQJuRSmI');
     });
     const flingDown = Gesture.Fling()
         .direction(Directions.DOWN)
         .onStart((e) => {
             console.log('Swiped down');
-            runOnJS(updateEmbed)('Ll0RattR1DE'); // Change when we make an API call
+            scheduleOnRN(updateEmbed, 'Ll0RattR1DE'); // Change when we make an API call
         });
     const composed = Gesture.Simultaneous(flingUp, flingDown)
 
