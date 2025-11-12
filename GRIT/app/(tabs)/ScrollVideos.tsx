@@ -4,6 +4,7 @@ import {
   GestureDetector,
   Directions,
 } from 'react-native-gesture-handler';
+import { getNextVideoId } from './databaseInterface';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -26,24 +27,19 @@ export default function ScrollVideos() {
 
   // Helper to update the embed URL from the JS thread. Gesture handlers run as worklets
   // on the UI thread, so use runOnJS(updateEmbed)('vid') to call this safely.
-  const updateEmbed = (id: string) => {
-    setEmbedUrl(createEmbedUrl(id));
+  const updateEmbed = (direction: boolean) => {
+    // Call API to get next video
+    // This is terrible, what if they swipe left or right?
+    // The answer is you call a different function.
+    if (direction === false) {
+      //setEmbedUrl(createEmbedUrl('3KtWQJuRSmI'));
+      setEmbedUrl(createEmbedUrl(getNextVideoId(true)));
+    }
+    else {
+      //setEmbedUrl(createEmbedUrl('Ll0RattR1DE'));
+      setEmbedUrl(createEmbedUrl(getNextVideoId(false)));
+    }
   };
-
-  const YouTubeEmbed = () => {
-
-  return (
-    <View style={styles.container}>
-      <WebView
-        source={{ uri: embedUrl }}
-        style={styles.webview}
-        allowsFullscreenVideo={false}
-        scrollEnabled={false}
-        pointerEvents="none"
-      />
-    </View>
-  );
-};
 
   // const position = useSharedValue(0);
   const flingUp = Gesture.Fling()
@@ -52,13 +48,13 @@ export default function ScrollVideos() {
       //position.value = withTiming(position.value - 100, { duration: 100 });
       console.log('Swiped up');
       // Call the JS-thread updater with the new video id
-      scheduleOnRN(updateEmbed, '3KtWQJuRSmI');
+      scheduleOnRN(updateEmbed, false);
     });
     const flingDown = Gesture.Fling()
         .direction(Directions.DOWN)
         .onStart((e) => {
             console.log('Swiped down');
-            scheduleOnRN(updateEmbed, 'Ll0RattR1DE'); // Change when we make an API call
+            scheduleOnRN(updateEmbed, true); // Change when we make an API call
         });
     const composed = Gesture.Simultaneous(flingUp, flingDown)
 
