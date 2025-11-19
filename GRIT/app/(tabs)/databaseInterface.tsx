@@ -17,7 +17,7 @@ export class databaseInterface {
 
 
 
-    public getNextVideoId(upwards: boolean): string
+    getNextVideoId(upwards: boolean): string
     {
         if (upwards) {
             this.pointer += 1;

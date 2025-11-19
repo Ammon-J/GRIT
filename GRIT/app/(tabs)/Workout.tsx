@@ -1,6 +1,6 @@
-import { useAudioPlayer } from 'expo-audio';
+// import { useAudioPlayer } from 'expo-audio';
 
-const audioSource = require('@/assets/audio/Phon.mp3');
+// const audioSource = require('@/assets/audio/Phon.mp3');
 
 import React from 'react';
 import { View, Button, Platform, StyleSheet } from 'react-native';
