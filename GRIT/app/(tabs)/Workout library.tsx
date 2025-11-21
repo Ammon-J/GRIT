@@ -8,6 +8,8 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
+import { Link } from 'expo-router';
+import { Pressable } from 'react-native';
 
 // ✅ Import JSON directly
 import workgroupsData from '../../database/workgroups.json';
@@ -40,13 +42,29 @@ export default function TabTwoScreen() {
             <ThemedText>Level: {group.level}</ThemedText>
             <ThemedText>Focus: {group.focus.join(', ')}</ThemedText>
 
-            {group.exercises.map((exercise, i) => (
+            {/* {group.exercises.map((exercise, i) => (
               <View key={i} style={styles.exerciseCard}>
                 <Text style={styles.exerciseText}>
                   {exercise.name} — {exercise.sets} sets of {exercise.reps} (rest {exercise.rest})
                 </Text>
               </View>
-            ))}
+            ))} */}
+
+            {group.exercises.map((exercise, i) => {
+              const slug = exercise.name.toLowerCase().replace(/\s+/g, "-");
+
+              return (
+                <Link key={i} href={`/exercise/${slug}`} asChild>
+                  <Pressable style={styles.exerciseCard}>
+                    <Text style={styles.exerciseText}>
+                      {exercise.name} — {exercise.sets} sets of {exercise.reps} (rest {exercise.rest})
+                    </Text>
+                  </Pressable>
+                </Link>
+              );
+            })}
+
+
           </View>
         ))}
       </Collapsible>
