@@ -5,15 +5,10 @@ import {
   Directions,
 } from 'react-native-gesture-handler';
 import { getNextVideoId } from './databaseInterface';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { WebView } from 'react-native-webview';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 
@@ -23,7 +18,10 @@ function createEmbedUrl(vidId: string) {
 
 export default function ScrollVideos() {
   // const webViewRef = useRef<any | null>(null);
-  const [embedUrl, setEmbedUrl] = useState(`https://www.youtube.com/shorts/t34muYc261o?controls=1&autoplay=0`);
+  // const [embedUrl, setEmbedUrl] = useState(`https://www.youtube.com/shorts/t34muYc261o?controls=1&autoplay=0`);
+  const [embedUrl, setEmbedUrl] = useState(`https://gritblob.blob.core.windows.net/videos/Barbell-Back-Squat.mp4`);
+
+  // "https://<your-storage-account>.blob.core.windows.net/<container>/<video.mp4>?<sas-token>";
 
   // Helper to update the embed URL from the JS thread. Gesture handlers run as worklets
   // on the UI thread, so use runOnJS(updateEmbed)('vid') to call this safely.
@@ -57,6 +55,7 @@ export default function ScrollVideos() {
             scheduleOnRN(updateEmbed, true); // Change when we make an API call
         });
     const composed = Gesture.Simultaneous(flingUp, flingDown)
+
 
   return (
     <SafeAreaProvider>

@@ -1,4 +1,4 @@
-export class databaseInterface {
+export class DatabaseInterface {
     ids = [
             "3KtWQJuRSmI",
             "Ll0RattR1DE",
@@ -9,15 +9,11 @@ export class databaseInterface {
     pointer = 0;
     size: number;
 
-    //eslint says this is a useless constructor
     constructor() {
-        // Set size to database table size
         this.size = this.ids.length;
     }
 
-
-
-    public getNextVideoId(upwards: boolean): string
+    getNextVideoId(upwards: boolean): string
     {
         if (upwards) {
             this.pointer += 1;
@@ -34,3 +30,12 @@ export class databaseInterface {
         return this.ids[this.pointer];
     }
 }
+
+// singleton instance and named export for convenience
+const db = new DatabaseInterface();
+
+export function getNextVideoId(upwards: boolean): string {
+    return db.getNextVideoId(upwards);
+}
+
+export default db;

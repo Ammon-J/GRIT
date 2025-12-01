@@ -1,89 +1,95 @@
-import { useLocalSearchParams, Link } from 'expo-router';
-import { StyleSheet, View, ScrollView, Image } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+import { StyleSheet, Text, Image } from 'react-native';
+import { Video, ResizeMode } from 'expo-av';
+import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-
-// For now, mock data — later, this could come from a JSON file or backend
-const exerciseLibrary = {
-  'bench-press': {
-    title: 'Bench Press',
-    instructions:
-      'Lie on a flat bench with your feet firmly on the ground. Grip the barbell slightly wider than shoulder width. Lower the bar to your chest, then press it back up until your arms are fully extended.',
-    sets: 4,
-    reps: 8,
-    rest: 90,
-    videoUrl: null, // placeholder for future video
-  },
-  'pull-ups': {
-    title: 'Pull-Ups',
-    instructions:
-      'Grab the pull-up bar with your palms facing away from you. Pull yourself up until your chin is above the bar, then lower back down slowly.',
-    sets: 3,
-    reps: 10,
-    rest: 60,
-    videoUrl: null,
-  },
-};
+import { Fonts } from '@/constants/theme';
+import { workouts } from '../data/workouts';
 
 export default function ExercisePage() {
-  const { name } = useLocalSearchParams<{ name: string }>();
-  const exercise = exerciseLibrary[name as keyof typeof exerciseLibrary];
+  const { name } = useLocalSearchParams();
+  const exercise = workouts.find((w) => w.id === name);
 
   if (!exercise) {
     return (
       <ThemedView style={styles.container}>
-        <ThemedText type="title">Exercise not found</ThemedText>
-        <Link href="/(tabs)/explore">
-          <ThemedText type="link">Back to Library</ThemedText>
-        </Link>
+        <ThemedText type="subtitle" style={styles.error}>
+          Exercise not found!
+        </ThemedText>
       </ThemedView>
     );
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">{exercise.title}</ThemedText>
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/ModernGym.png')}
+          style={styles.reactLogo}
+        />
+      }
+    >
+      <ThemedView style={styles.content}>
+        <ThemedText type="title" style={styles.title}>
+          {exercise.name}
+        </ThemedText>
 
-        {/* Placeholder for form video */}
-        <View style={styles.videoPlaceholder}>
-          <ThemedText type="defaultSemiBold">[Video Coming Soon]</ThemedText>
-        </View>
+        <Video
+          source={exercise.video}
+          style={styles.video}
+          useNativeControls
+          resizeMode={ResizeMode.CONTAIN}
+        />
 
-        <ThemedText type="subtitle">Instructions</ThemedText>
-        <ThemedText style={styles.instructions}>{exercise.instructions}</ThemedText>
-
-        <ThemedText type="subtitle">Workout Details</ThemedText>
-        <ThemedText>Sets: {exercise.sets}</ThemedText>
-        <ThemedText>Reps: {exercise.reps}</ThemedText>
-        <ThemedText>Rest: {exercise.rest} sec</ThemedText>
-
-        <Link href="/(tabs)/explore" style={styles.backLink}>
-          <ThemedText type="link">← Back to Exercise Library</ThemedText>
-        </Link>
+        <Text style={styles.bodyText}>Sets: {exercise.sets}</Text>
+        <Text style={styles.bodyText}>Reps: {exercise.reps}</Text>
+        <Text style={styles.bodyText}>Rest: {exercise.rest}</Text>
+        <Text style={styles.bodyText}>{exercise.instructions}</Text>
       </ThemedView>
-    </ScrollView>
+    </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: {
+  reactLogo: {
+    height: 178,
+    width: 500,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+  },
+  content: {
     padding: 20,
+    gap: 12,
   },
-  container: {
-    gap: 16,
+  title: {
+    fontFamily: Fonts.rounded,
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#fff',
   },
-  videoPlaceholder: {
-    height: 200,
-    backgroundColor: '#ccc',
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  instructions: {
+  bodyText: {
+    fontFamily: Fonts.rounded,
+    fontSize: 16,
+    color: '#fff',
     lineHeight: 22,
   },
-  backLink: {
-    marginTop: 24,
+  video: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    backgroundColor: '#000',
+    marginVertical: 10,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  error: {
+    fontSize: 20,
+    color: 'red',
   },
 });
