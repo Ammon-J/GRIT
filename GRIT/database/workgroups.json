@@ -21,6 +21,18 @@
         { "name": "Deadlift", "sets": 4, "reps": "6", "rest": "2m" },
         { "name": "Lunge", "sets": 3, "reps": "12/leg", "rest": "60s" }
       ]
+    },
+    {
+      "id": 3,
+      "name": "Arms",
+      "level": "Advanced",
+      "focus": ["Biceps", "Triceps"],
+      "exercises": [
+        { "name": "Incline Curls", "sets": 3, "reps": "8-12", "rest": "2m" },
+        { "name": "Tricep extensions", "sets": 4, "reps": "8-10", "rest": "2m" },
+        { "name": "Spider Curls", "sets": 3, "reps": "12", "rest": "60s" },
+        { "name": "Preacher Curls", "sets": 3, "reps": "10", "rest": "60s" }
+      ]
     }
   ]
 }
