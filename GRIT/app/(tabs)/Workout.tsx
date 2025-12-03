@@ -3,7 +3,7 @@
 // const audioSource = require('@/assets/audio/Phon.mp3');
 
 import React from 'react';
-import { View, Button, Platform, StyleSheet } from 'react-native';
+import { View, Platform, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Link } from 'expo-router';
 import { Image } from 'expo-image';
@@ -13,13 +13,15 @@ import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Fonts } from '@/constants/theme';
+import { Fonts, Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabTwoScreen() {
   const navigation = useNavigation();
-  const player = useAudioPlayer(audioSource);
-
-  player.play();
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+  // const player = useAudioPlayer(audioSource);
+  // player.play();
 
   return (
     <ParallaxScrollView
@@ -40,21 +42,21 @@ export default function TabTwoScreen() {
 
       {/* Navigation Buttons */}
       <View style={styles.buttonContainer}>
-        <View style={styles.buttonWrapper}>
-          <Button
-            title="Workout Library"
-            onPress={() => navigation.navigate("Workout library" as never)}
-            color="#fbfbfdff"
-          />
-        </View>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: colors.primary }]}
+          onPress={() => navigation.navigate("Workout library" as never)}
+          activeOpacity={0.8}
+        >
+          <Text style={[styles.buttonText, { color: colors.textInverse }]}>Workout Library</Text>
+        </TouchableOpacity>
 
-        <View style={styles.buttonWrapper}>
-          <Button
-            title="Infinte Scroll"
-            onPress={() => navigation.navigate("InfiniteScroll" as never)}
-            color="#fcfefdff"
-          />
-        </View>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: colors.primary }]}
+          onPress={() => navigation.navigate("ScrollVideos" as never)}
+          activeOpacity={0.8}
+        >
+          <Text style={[styles.buttonText, { color: colors.textInverse }]}>Infinite Scroll</Text>
+        </TouchableOpacity>
       </View>
     </ParallaxScrollView>
   );
@@ -82,15 +84,27 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 40,
     gap: 20,
-    
+
   },
-  buttonWrapper: {
+  button: {
     width: "70%",
-    borderWidth: 2, // thickness of the border
-    borderColor: '#f7f6f8ff', // border color
-    borderRadius: 8, // rounded corners
-    overflow: 'hidden',
-    backgroundColor:'#4425f5ff'
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    fontFamily: Fonts.rounded,
   },
 
   reactLogo: {

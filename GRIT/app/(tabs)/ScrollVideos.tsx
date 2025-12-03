@@ -1,79 +1,79 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions, TouchableOpacity, Text } from 'react-native';
 import {
   Gesture,
   GestureDetector,
   Directions,
 } from 'react-native-gesture-handler';
-import { getNextVideoId } from './databaseInterface';
-import { scheduleOnRN } from 'react-native-worklets';
-import { WebView } from 'react-native-webview';
+import { Video, ResizeMode } from 'expo-av';
+import { useState, useEffect, useCallback } from 'react';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { Link, useRouter } from 'expo-router';
+import { runOnJS } from 'react-native-reanimated';
 
-import { useState } from 'react';
+import { workouts } from '../data/workouts';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Fonts } from '@/constants/theme';
 
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
-
-function createEmbedUrl(vidId: string) {
-  return `https://www.youtube.com/shorts/${vidId}?controls=1&autoplay=0`;
-}
+const { width, height } = Dimensions.get('window');
 
 export default function ScrollVideos() {
-  // const webViewRef = useRef<any | null>(null);
-  // const [embedUrl, setEmbedUrl] = useState(`https://www.youtube.com/shorts/t34muYc261o?controls=1&autoplay=0`);
-  const [embedUrl, setEmbedUrl] = useState(`https://gritblob.blob.core.windows.net/videos/Barbell-Back-Squat.mp4`);
+  const [currentWorkout, setCurrentWorkout] = useState(workouts[0]);
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+  const router = useRouter();
 
-  // "https://<your-storage-account>.blob.core.windows.net/<container>/<video.mp4>?<sas-token>";
+  const pickRandomWorkout = useCallback(() => {
+    const randomIndex = Math.floor(Math.random() * workouts.length);
+    setCurrentWorkout(workouts[randomIndex]);
+  }, []);
 
-  // Helper to update the embed URL from the JS thread. Gesture handlers run as worklets
-  // on the UI thread, so use runOnJS(updateEmbed)('vid') to call this safely.
-  const updateEmbed = (direction: boolean) => {
-    // Call API to get next video
-    // This is terrible, what if they swipe left or right?
-    // The answer is you call a different function.
-    if (direction === false) {
-      //setEmbedUrl(createEmbedUrl('3KtWQJuRSmI'));
-      setEmbedUrl(createEmbedUrl(getNextVideoId(true)));
-    }
-    else {
-      //setEmbedUrl(createEmbedUrl('Ll0RattR1DE'));
-      setEmbedUrl(createEmbedUrl(getNextVideoId(false)));
-    }
+  // Initial load
+  useEffect(() => {
+    pickRandomWorkout();
+  }, [pickRandomWorkout]);
+
+  const onSwipeUp = () => {
+    pickRandomWorkout();
   };
 
-  // const position = useSharedValue(0);
   const flingUp = Gesture.Fling()
     .direction(Directions.UP)
     .onStart(() => {
-      //position.value = withTiming(position.value - 100, { duration: 100 });
-      console.log('Swiped up');
-      // Call the JS-thread updater with the new video id
-      scheduleOnRN(updateEmbed, false);
+      runOnJS(onSwipeUp)();
     });
-    const flingDown = Gesture.Fling()
-        .direction(Directions.DOWN)
-        .onStart((e) => {
-            console.log('Swiped down');
-            scheduleOnRN(updateEmbed, true); // Change when we make an API call
-        });
-    const composed = Gesture.Simultaneous(flingUp, flingDown)
-
 
   return (
     <SafeAreaProvider>
-        <SafeAreaView style={styles.container}>
-            <GestureDetector gesture={composed}>
-              <View collapsable={false} style={{ flex: 1 }}>
-                <WebView
-                  // ref={webViewRef}
-                  key={embedUrl}
-                  source={{ uri: embedUrl }}
-                  style={styles.webview}
-                  allowsFullscreenVideo={false}
-                  scrollEnabled={false}
-                  pointerEvents="none"
-                />
-              </View>
-            </GestureDetector>
-        </SafeAreaView>
+      <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+        <GestureDetector gesture={flingUp}>
+          <View style={styles.contentContainer}>
+            <Video
+              source={currentWorkout.video}
+              style={styles.video}
+              resizeMode={ResizeMode.CONTAIN}
+              shouldPlay
+              isLooping
+              isMuted={false}
+            />
+
+            <View style={styles.overlay}>
+              <Link href={`/exercise/${currentWorkout.id}`} asChild>
+                <TouchableOpacity
+                  style={[styles.linkButton, { backgroundColor: colors.primary }]}
+                  activeOpacity={0.8}
+                >
+                  <Text style={[styles.linkText, { color: colors.textInverse }]}>
+                    {currentWorkout.name}
+                  </Text>
+                  <IconSymbol name="arrow.up.right" size={20} color={colors.textInverse} />
+                </TouchableOpacity>
+              </Link>
+            </View>
+          </View>
+        </GestureDetector>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }
@@ -81,12 +81,39 @@ export default function ScrollVideos() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#000',
   },
-  baseText: {
-    fontFamily: 'Cochin',
-  },
-  webview: {
+  contentContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  video: {
+    width: width,
+    height: height * 0.8, // Take up most of the screen
+  },
+  overlay: {
+    position: 'absolute',
+    bottom: 40,
+    width: '100%',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  linkButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 30,
+    width: '100%',
+    maxWidth: 400,
+  },
+  linkText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: Fonts.rounded,
+    textDecorationLine: 'underline',
   },
 });

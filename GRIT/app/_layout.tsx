@@ -1,4 +1,5 @@
 import { useAudioPlayer } from 'expo-audio';
+import { useEffect } from 'react';
 
 const audioSource = require('@/assets/audio/Phon.mp3');
 
@@ -19,19 +20,21 @@ export default function RootLayout() {
   // Also figure out how to choose between audio files in assets/audio
   const player = useAudioPlayer(audioSource)
 
-  player.play();
+  useEffect(() => {
+    player.play();
+  }, [player]);
   const colorScheme = useColorScheme();
 
   return (
     <GestureHandlerRootView>
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(auth)" options = {{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
     </GestureHandlerRootView>
   );
 }

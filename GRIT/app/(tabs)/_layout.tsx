@@ -20,7 +20,7 @@ export default function TabLayout() {
       setReady(true);
     })();
   }, []);
-  
+
   if (!ready) return null; // could return a splash/loader
   if (!signedIn) return <Redirect href="/sign-in" />;
 
@@ -39,10 +39,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="workouts"
+        name="Workout"
         options={{
           title: 'Workouts',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="dumbbell.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="ScrollVideos"
+        options={{
+          title: 'Discover',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="film.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="Workout library"
+        options={{
+          title: 'Library',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="book.fill" color={color} />,
         }}
       />
     </Tabs>
