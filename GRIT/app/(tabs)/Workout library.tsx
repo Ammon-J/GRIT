@@ -107,19 +107,6 @@ export default function TabTwoScreen() {
           <Text>• Stay hydrated throughout</Text>
         </View>
       </Collapsible>
-<<<<<<< HEAD
-=======
-
-      <Collapsible title="Images">
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
->>>>>>> f0d359f18858a44a689f4e04bedfa5109bf7d13b
     </ParallaxScrollView >
   );
 }
@@ -140,9 +127,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 10,
     padding: 10,
+    backgroundColor: '#c3caccff',
   },
   exerciseCard: {
-    // backgroundColor: '#A1CEDC', // Removed old color
+    //backgroundColor: '#A1CEDC', // Removed old color
     borderRadius: 6,
     marginVertical: 4,
     padding: 6,
