@@ -107,7 +107,6 @@ export default function TabTwoScreen() {
           <Text>• Stay hydrated throughout</Text>
         </View>
       </Collapsible>
-
     </ParallaxScrollView >
   );
 }
