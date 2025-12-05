@@ -4,6 +4,7 @@ import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { getCurrentUser } from '@/lib/auth-store';
 import { Redirect, Tabs } from 'expo-router';
+import Feather from '@expo/vector-icons/Feather';
 import React from 'react';
 
 
@@ -57,6 +58,13 @@ export default function TabLayout() {
         options={{
           title: 'Library',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="book.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="Help"
+        options={{
+          title: 'Help',
+          tabBarIcon: ({ color }) => <Feather name="gitlab" size={24} color={color} />,
         }}
       />
     </Tabs>
