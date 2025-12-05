@@ -11,10 +11,17 @@ import { Fonts } from '@/constants/theme';
 import { Link } from 'expo-router';
 import { Pressable } from 'react-native';
 
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { workouts } from '../data/workouts';
+
 // ✅ Import JSON directly
 import workgroupsData from '../../database/workgroups.json';
 
 export default function TabTwoScreen() {
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -37,10 +44,10 @@ export default function TabTwoScreen() {
 
       <Collapsible title="Workout Routines">
         {workgroupsData.workgroups.map((group) => (
-          <View key={group.id} style={styles.workoutGroup}>
-            <ThemedText type="subtitle">{group.name}</ThemedText>
-            <ThemedText>Level: {group.level}</ThemedText>
-            <ThemedText>Focus: {group.focus.join(', ')}</ThemedText>
+          <View key={group.id} style={[styles.workoutGroup, { backgroundColor: colors.primary }]}>
+            <ThemedText type="subtitle" style={{ color: colors.textInverse }}>{group.name}</ThemedText>
+            <ThemedText style={{ color: colors.textInverse }}>Level: {group.level}</ThemedText>
+            <ThemedText style={{ color: colors.textInverse }}>Focus: {group.focus.join(', ')}</ThemedText>
 
             {/* {group.exercises.map((exercise, i) => (
               <View key={i} style={styles.exerciseCard}>
@@ -69,6 +76,28 @@ export default function TabTwoScreen() {
         ))}
       </Collapsible>
 
+
+
+      <Collapsible title="All Exercises">
+        <View style={styles.listContainer}>
+          {workouts.map((workout) => (
+            <Link key={workout.id} href={`/exercise/${workout.id}`} asChild>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.exerciseButton,
+                  { backgroundColor: colors.primary, opacity: pressed ? 0.8 : 1 }
+                ]}
+              >
+                <Text style={[styles.exerciseButtonText, { color: colors.textInverse }]}>
+                  {workout.name}
+                </Text>
+                <IconSymbol name="arrow.up.right" size={20} color={colors.textInverse} />
+              </Pressable>
+            </Link>
+          ))}
+        </View>
+      </Collapsible>
+
       <Collapsible title="Guidelines">
         <ThemedText>Each workout will vary between 45 minutes to 90 minutes.</ThemedText>
         <View style={{ marginTop: 8, paddingLeft: 16 }}>
@@ -88,7 +117,7 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
-    </ParallaxScrollView>
+    </ParallaxScrollView >
   );
 }
 
@@ -106,17 +135,44 @@ const styles = StyleSheet.create({
   },
   workoutGroup: {
     marginVertical: 10,
-    backgroundColor: '#A1CEDC',
     borderRadius: 10,
     padding: 10,
   },
   exerciseCard: {
-    backgroundColor: '#A1CEDC',
+    // backgroundColor: '#A1CEDC', // Removed old color
     borderRadius: 6,
     marginVertical: 4,
     padding: 6,
   },
   exerciseText: {
     color: '#fff',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+  },
+  listContainer: {
+    gap: 12,
+    marginTop: 8,
+  },
+  exerciseButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start', // Align items to the start
+    gap: 4, // Reduced space between text and icon
+    padding: 16,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  exerciseButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    fontFamily: Fonts.rounded,
+    textDecorationLine: 'underline', // Underline text
   },
 });
