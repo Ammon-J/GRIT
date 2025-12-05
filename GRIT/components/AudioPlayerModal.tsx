@@ -8,6 +8,10 @@ const audioFiles = {
   Phon: require("@/assets/audio/Phon.mp3"),
   Rave: require("@/assets/audio/Rave.mp3"),
   West: require("@/assets/audio/west.mp3"),
+  Built: require("@/assets/audio/built.mp3"),
+  Retourne: require("@/assets/audio/Retourne.mp3"),
+  Slap: require("@/assets/audio/Slap.mp3"),
+  Ura: require("@/assets/audio/ura.mp3"),
 };
 
 type AudioPlayerModalProps = {
