@@ -107,6 +107,8 @@ export default function TabTwoScreen() {
           <Text>• Stay hydrated throughout</Text>
         </View>
       </Collapsible>
+<<<<<<< HEAD
+=======
 
       <Collapsible title="Images">
         <Image
@@ -117,6 +119,7 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+>>>>>>> f0d359f18858a44a689f4e04bedfa5109bf7d13b
     </ParallaxScrollView >
   );
 }
