@@ -7,8 +7,8 @@
       "focus": ["Chest", "Shoulders", "Triceps"],
       "exercises": [
         { "name": "Bench Press", "sets": 4, "reps": "8-10", "rest": "90s" },
-        { "name": "Overhead Press", "sets": 3, "reps": "10-12", "rest": "60s" },
-        { "name": "Tricep Dips", "sets": 3, "reps": "12-15", "rest": "45s" }
+        { "name": "Lat Pulldown", "sets": 3, "reps": "10-12", "rest": "60s" },
+        { "name": "Seated Cable Row", "sets": 3, "reps": "12-15", "rest": "60s" }
       ]
     },
     {
@@ -18,7 +18,9 @@
       "focus": ["Legs", "Glutes"],
       "exercises": [
         { "name": "Barbell Back Squat", "sets": 5, "reps": "5", "rest": "2m" },
-        { "name": "Deadlift", "sets": 4, "reps": "6", "rest": "2m" },
+        { "name": "Barbell front Squat", "sets": 5, "reps": "5", "rest": "2m" },
+        { "name": "Barbell Deadlift", "sets": 4, "reps": "6", "rest": "2m" },
+        { "name": "Standing Barbell Calf Raises", "sets": 4, "reps": "6", "rest": "2m" },
         { "name": "Seated Leg Extensions", "sets": 3, "reps": "12/leg", "rest": "60s" }
       ]
     },
@@ -30,7 +32,6 @@
       "exercises": [
         { "name": "Seated Dumbbell Curls", "sets": 3, "reps": "8-12", "rest": "2m" },
         { "name": "Tricep extensions", "sets": 4, "reps": "8-10", "rest": "2m" },
-        { "name": "Spider Curls", "sets": 3, "reps": "12", "rest": "60s" },
         { "name": "Preacher Curls", "sets": 3, "reps": "10", "rest": "60s" }
       ]
     }

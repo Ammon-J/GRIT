@@ -127,9 +127,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 10,
     padding: 10,
+    backgroundColor: '#c3caccff',
   },
   exerciseCard: {
-    // backgroundColor: '#A1CEDC', // Removed old color
+    //backgroundColor: '#A1CEDC', // Removed old color
     borderRadius: 6,
     marginVertical: 4,
     padding: 6,
