@@ -42,39 +42,27 @@ export default function TabTwoScreen() {
         Welcome to your Ultimate Resource for Mastering Skills and Reaching Your Goals.
       </ThemedText>
 
-      <Collapsible title="Workout Routines">
-        {workgroupsData.workgroups.map((group) => (
-          <View key={group.id} style={[styles.workoutGroup, { backgroundColor: colors.primary }]}>
-            <ThemedText type="subtitle" style={{ color: colors.textInverse }}>{group.name}</ThemedText>
-            <ThemedText style={{ color: colors.textInverse }}>Level: {group.level}</ThemedText>
-            <ThemedText style={{ color: colors.textInverse }}>Focus: {group.focus.join(', ')}</ThemedText>
+{workgroupsData.workgroups.map((group) => (
+  <View key={group.id} style={[styles.workoutGroup, { backgroundColor: colors.primary }]}>
+    <ThemedText type="subtitle" style={{ color: colors.textInverse }}>{group.name}</ThemedText>
+    <ThemedText style={{ color: colors.textInverse }}>Level: {group.level}</ThemedText>
+    <ThemedText style={{ color: colors.textInverse }}>Focus: {group.focus.join(', ')}</ThemedText>
 
-            {/* {group.exercises.map((exercise, i) => (
-              <View key={i} style={styles.exerciseCard}>
-                <Text style={styles.exerciseText}>
-                  {exercise.name} — {exercise.sets} sets of {exercise.reps} (rest {exercise.rest})
-                </Text>
-              </View>
-            ))} */}
+    {group.exercises.map((exercise, i) => {
+      const slug = exercise.name.toLowerCase().replace(/\s+/g, "-");
 
-            {group.exercises.map((exercise, i) => {
-              const slug = exercise.name.toLowerCase().replace(/\s+/g, "-");
-
-              return (
-                <Link key={i} href={`/exercise/${slug}`} asChild>
-                  <Pressable style={styles.exerciseCard}>
-                    <Text style={styles.exerciseText}>
-                      {exercise.name} — {exercise.sets} sets of {exercise.reps} (rest {exercise.rest})
-                    </Text>
-                  </Pressable>
-                </Link>
-              );
-            })}
-
-
-          </View>
-        ))}
-      </Collapsible>
+      return (
+        <Link key={i} href={`/exercise/${slug}`} asChild>
+          <Pressable style={styles.exerciseCard}>
+            <Text style={styles.exerciseText}>
+              {exercise.name} — {exercise.sets} sets of {exercise.reps} (rest {exercise.rest})
+            </Text>
+          </Pressable>
+        </Link>
+      );
+    })}
+  </View>
+))}
 
 
 
