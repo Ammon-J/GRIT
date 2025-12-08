@@ -20,10 +20,12 @@ type AudioPlayerModalProps = {
 };
 
 export default function AudioPlayerModal({ visible, onClose }: AudioPlayerModalProps) {
-  const [currentTrack, setCurrentTrack] = useState<keyof typeof audioFiles>("Phon");
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState<keyof typeof audioFiles>("Rave");
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const player = useAudioPlayer(audioFiles[currentTrack]);
+
+  player.play();
 
   /*
     useEffect(() => {
