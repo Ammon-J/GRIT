@@ -44,7 +44,7 @@ export default function AudioPlayerModal({ visible, onClose }: AudioPlayerModalP
 
   const changeTrack = (track: keyof typeof audioFiles) => {
     if (isPlaying) {
-      player.stop();
+      player.pause();
       setIsPlaying(false);
     }
     setCurrentTrack(track);
