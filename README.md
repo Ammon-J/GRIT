@@ -20,14 +20,21 @@ Grit is an interactive mobile app to be your guide on your path to improve you p
 
 ## Software Features
 
-* [ ] Various exercises with infinite scrolling
+* [x] Various exercises with infinite scrolling
 * [ ] User authentication with user account
-* [ ] Interactive theming 
+* [x] Interactive theming
+* [x] List of different workouts
+* [x] Suggestments for rep/set count
+* [x] Instructional videos
+* [x] Short form content
+* [x] Inspirational qoutes on landing page
+* [x] Audio controls for backgrround music
 
 ## GitHub Usage
 1. Create a branch through VSCode
 2. Commit your new code
 3. Push to main
+
 ## Team Communication
 We are using Discord to communicate
 
@@ -35,11 +42,11 @@ We are using Discord to communicate
 
 |Responsibility                      |Team Member(s)              |
 |------------------------------------|----------------------------|
-|Conducting Meetings                     | Adam Arriola                                |
-|Maintaining Team Assignment List        | Adam Arriola                                |
-|Ensuring GitHub is Working              | Ammon Johnson                          |
-|Maintaining Documentation               | Ammon Johnson                           |
+|Conducting Meetings                     | Adam Arriola                     |
+|Maintaining Team Assignment List        | Adam Arriola                     |
+|Ensuring GitHub is Working              | Ammon Johnson                    |
+|Maintaining Documentation               | Ammon Johnson                    |
 |Create & Display Presentations          | Makay Crandall, Joel Johnson     |
-|Submit Team Assignments                 | Grant Orchard                              |
+|Submit Team Assignments                 | Grant Orchard                    |
 
 ## Reflections
