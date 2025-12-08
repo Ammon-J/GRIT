@@ -16,7 +16,7 @@ import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { workouts } from '../data/workouts';
 
-// ✅ Import JSON directly
+//  Import JSON directly
 import workgroupsData from '../../database/workgroups.json';
 
 export default function TabTwoScreen() {
@@ -24,7 +24,7 @@ export default function TabTwoScreen() {
   const colors = Colors[colorScheme ?? 'light'];
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
         <Image
           source={require("@/assets/images/ModernGym.png")}
@@ -89,10 +89,10 @@ export default function TabTwoScreen() {
       <Collapsible title="Guidelines">
         <ThemedText>Each workout will vary between 45 minutes to 90 minutes.</ThemedText>
         <View style={{ marginTop: 8, paddingLeft: 16 }}>
-          <Text>• Warm up before starting</Text>
-          <Text>• Rest 60–90 seconds between sets</Text>
-          <Text>• Focus on form over weight</Text>
-          <Text>• Stay hydrated throughout</Text>
+          <ThemedText>• Warm up before starting</ThemedText>
+          <ThemedText>• Rest 60–90 seconds between sets</ThemedText>
+          <ThemedText>• Focus on form over weight</ThemedText>
+          <ThemedText>• Stay hydrated throughout</ThemedText>
         </View>
       </Collapsible>
     </ParallaxScrollView >
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: '#c3caccff',
+    backgroundColor: '#3f97afff',
   },
   exerciseCard: {
     //backgroundColor: '#A1CEDC', // Removed old color
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 2,
+      
     },
     shadowOpacity: 0.1,
     shadowRadius: 3.84,

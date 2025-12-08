@@ -2,7 +2,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, ImageBackground } from 'react-native';
 
+
+
+
 export default function HelpPage() {
+  
   return (
     <ImageBackground
       source={require('@/assets/images/wjack.jpg')} // Place your background image in the assets folder
@@ -48,13 +52,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    padding: 20,
+    padding: 40,
     backgroundColor: 'rgba(255,255,255,0.8)', // semi-transparent overlay for readability
+    justifyContent: 'center'
+
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 20,
+    padding:15,
     textAlign: 'center',
     color: '#333',
   },
