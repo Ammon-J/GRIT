@@ -4,11 +4,11 @@ import {
   GestureDetector,
   Directions,
 } from 'react-native-gesture-handler';
-import { Video, ResizeMode } from 'expo-av';
-import { useState, useEffect, useCallback } from 'react';
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { useState, useCallback } from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { Link, useRouter } from 'expo-router';
-import { runOnJS } from 'react-native-reanimated';
+import { Link } from 'expo-router';
+import { scheduleOnRN } from 'react-native-worklets';
 
 import { workouts } from '../data/workouts';
 import { IconSymbol } from '@/components/ui/icon-symbol';
@@ -22,40 +22,39 @@ export default function ScrollVideos() {
   const [currentWorkout, setCurrentWorkout] = useState(workouts[0]);
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
-  const router = useRouter();
 
-  const pickRandomWorkout = useCallback(() => {
+  const player = useVideoPlayer(currentWorkout.video, player => {
+    player.loop = true;
+    player.play();
+  });
+
+  const pickRandomWorkout = useCallback(() => { // If you feel like it, please make this go through a shuffled array instead of this so we don't repeat videos.
     const randomIndex = Math.floor(Math.random() * workouts.length);
     setCurrentWorkout(workouts[randomIndex]);
   }, []);
 
-  // Initial load
-  useEffect(() => {
-    pickRandomWorkout();
-  }, [pickRandomWorkout]);
-
-  const onSwipeUp = () => {
-    pickRandomWorkout();
-  };
-
   const flingUp = Gesture.Fling()
     .direction(Directions.UP)
     .onStart(() => {
-      runOnJS(onSwipeUp)();
+      scheduleOnRN(pickRandomWorkout);
     });
+  
+  const flingDown = Gesture.Fling()
+    .direction(Directions.DOWN)
+    .onStart(() => {
+      scheduleOnRN(pickRandomWorkout);
+    });
+
+  const composed = Gesture.Race(flingUp, flingDown);
 
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-        <GestureDetector gesture={flingUp}>
+        <GestureDetector gesture={composed}>
           <View style={styles.contentContainer}>
-            <Video
-              source={currentWorkout.video}
+            <VideoView
+              player={player}
               style={styles.video}
-              resizeMode={ResizeMode.CONTAIN}
-              shouldPlay
-              isLooping
-              isMuted={false}
             />
 
             <View style={styles.overlay}>
