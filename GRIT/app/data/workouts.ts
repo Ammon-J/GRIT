@@ -44,7 +44,7 @@ export const workouts = [
   },
 
   {
-    id: "cable-rope-tricep-pushdown",
+    id: "tricep-extensions",
     name: "Cable Rope Tricep Pushdown",
     sets: 3,
     reps: 12,
@@ -110,7 +110,7 @@ export const workouts = [
   },
 
   {
-    id: "standing-barbell-calf-raise",
+    id: "standing-barbell-calf-raises",
     name: "Standing Barbell Calf Raise",
     sets: 4,
     reps: 15,

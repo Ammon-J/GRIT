@@ -6,10 +6,32 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
 import { workouts } from '../data/workouts';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
 
 export default function ExercisePage() {
   const { name } = useLocalSearchParams();
   const exercise = workouts.find((w) => w.id === name);
+
+  useEffect(() => {
+    if (exercise) {
+      logExercise(exercise);
+    }
+  }, [exercise]);
+
+  const logExercise = async (exercise: typeof workouts[0]) => {
+    try {
+      const stored = await AsyncStorage.getItem('recentExercises');
+      const recent = stored ? JSON.parse(stored) : [];
+
+      const filtered = recent.filter((e: any) => e.id !== exercise.id);
+      const updated = [exercise, ...filtered];
+
+      await AsyncStorage.setItem('recentExercises', JSON.stringify(updated.slice(0, 5)));
+    } catch (e) {
+      console.error('Failed to log exercise:', e);
+    }
+  };
 
   if (!exercise) {
     return (
