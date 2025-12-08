@@ -1,29 +1,21 @@
-import { useAudioPlayer } from 'expo-audio';
-import { useEffect } from 'react';
-
-const audioSource = require('@/assets/audio/Phon.mp3');
-
+import React, { useState } from "react";
+import { Button } from "react-native";
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import AudioPlayerModal from "@/components/AudioPlayerModal";
 
 export const unstable_settings = {
   anchor: '(tabs)',
 };
 
 export default function RootLayout() {
-  // I need to make a modal for audio controls
-  // Also figure out how to choose between audio files in assets/audio
-  const player = useAudioPlayer(audioSource)
-
-  useEffect(() => {
-    player.play();
-  }, [player]);
   const colorScheme = useColorScheme();
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <GestureHandlerRootView>
@@ -33,6 +25,12 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         </Stack>
+
+        { /* for audio player */}
+        <Button title="Open Audio Controls" onPress={() => setModalVisible(true)} />
+
+        <AudioPlayerModal visible={modalVisible} onClose={() => setModalVisible(false)} />
+
         <StatusBar style="auto" />
       </ThemeProvider>
     </GestureHandlerRootView>
