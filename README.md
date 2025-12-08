@@ -8,7 +8,7 @@
 + Ammon  Johnson
 
 ## Software Description
-Grit is an interactive mobile app to be your guide on your path to improve you physical health. It will help you keep track of you workouts (Ex what muscle group to target each day, rest days, and personal bio metrics to better see your progress) 
+Grit is an interactive mobile app to be your guide on your path to improve you physical health. It will help you keep track of your workouts (Ex what muscle group to target each day, rest days, and personal bio metrics to better see your progress) 
 
 ## Architecture
 + React Native with Expo Framework
