@@ -63,10 +63,10 @@ export default function ScrollVideos() {
                   style={[styles.linkButton, { backgroundColor: colors.primary }]}
                   activeOpacity={0.8}
                 >
-                  <Text style={[styles.linkText, { color: colors.textInverse }]}>
+                  <Text style={[styles.linkText, { color: colors.primary }]}>
                     {currentWorkout.name}
                   </Text>
-                  <IconSymbol name="arrow.up.right" size={20} color={colors.textInverse} />
+                  <IconSymbol name="arrow.up.right" size={20} color={colors.primary} />
                 </TouchableOpacity>
               </Link>
             </View>

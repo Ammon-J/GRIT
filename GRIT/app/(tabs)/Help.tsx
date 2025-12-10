@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 40,
-    backgroundColor: 'rgba(255,255,255,0.8)', // semi-transparent overlay for readability
+    backgroundColor: 'rgba(0,0,0,0.8)', // semi-transparent overlay for readability
     justifyContent: 'center'
 
   },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding:15,
     textAlign: 'center',
-    color: '#333',
+    color: '#FFF',
   },
   section: {
     marginBottom: 20,
@@ -71,11 +71,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     marginBottom: 8,
-    color: '#222',
+    color: '#FFF',
   },
   text: {
     fontSize: 16,
     lineHeight: 22,
-    color: '#444',
+    color: '#FFF',
   },
 });

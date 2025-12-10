@@ -16,7 +16,7 @@ export const Colors = {
     icon: '#687076',
     tabIconDefault: '#687076',
     tabIconSelected: tintColorLight,
-    primary: '#0a7ea4',
+    primary: '#000fffff',
     secondary: '#0a7ea4',
     card: '#fbfbfd',
     textInverse: '#FFFFFF',
@@ -28,7 +28,7 @@ export const Colors = {
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
-    primary: '#7f6ceaff', // Slightly lighter for dark mode
+    primary: '#0000ffff', // Slightly lighter for dark mode
     secondary: '#fff',
     card: '#2A2A2A',
     textInverse: '#FFFFFF',
