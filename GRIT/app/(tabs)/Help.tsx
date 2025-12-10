@@ -9,7 +9,7 @@ export default function HelpPage() {
   
   return (
     <ImageBackground
-      source={require('@/assets/images/wjack.jpg')} // Place your background image in the assets folder
+      source={require('@/assets/images/gym.jpg')} // Place your background image in the assets folder
       style={styles.background}
       resizeMode="cover"
     >
