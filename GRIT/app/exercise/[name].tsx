@@ -1,5 +1,5 @@
-import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, Text, Image } from 'react-native';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { StyleSheet, Image } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
@@ -36,6 +36,7 @@ export default function ExercisePage() {
   if (!exercise) {
     return (
       <ThemedView style={styles.container}>
+        <Stack.Screen options={{ title: 'Exercise Not Found' }} />
         <ThemedText type="subtitle" style={styles.error}>
           Exercise not found!
         </ThemedText>
@@ -53,6 +54,7 @@ export default function ExercisePage() {
         />
       }
     >
+      <Stack.Screen options={{ title: exercise.name }} />
       <ThemedView style={styles.content}>
         <ThemedText type="title" style={styles.title}>
           {exercise.name}
@@ -65,10 +67,10 @@ export default function ExercisePage() {
           resizeMode={ResizeMode.CONTAIN}
         />
 
-        <Text style={styles.bodyText}>Sets: {exercise.sets}</Text>
-        <Text style={styles.bodyText}>Reps: {exercise.reps}</Text>
-        <Text style={styles.bodyText}>Rest: {exercise.rest}</Text>
-        <Text style={styles.bodyText}>{exercise.instructions}</Text>
+        <ThemedText style={styles.bodyText}>Sets: {exercise.sets}</ThemedText>
+        <ThemedText style={styles.bodyText}>Reps: {exercise.reps}</ThemedText>
+        <ThemedText style={styles.bodyText}>Rest: {exercise.rest}</ThemedText>
+        <ThemedText style={styles.bodyText}>{exercise.instructions}</ThemedText>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -90,12 +92,10 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.rounded,
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#fff',
   },
   bodyText: {
     fontFamily: Fonts.rounded,
     fontSize: 16,
-    color: '#fff',
     lineHeight: 22,
   },
   video: {

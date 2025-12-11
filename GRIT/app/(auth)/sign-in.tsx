@@ -29,7 +29,7 @@ export default function SignInScreen() {
     if (!username || !password) return; // super basic guard
     setBusy(true);
     try {
-        // call our storage functions to verify everything, if it checks out let the user in 
+      // call our storage functions to verify everything, if it checks out let the user in 
       await signIn(username.trim(), password);
       router.replace('/');
     } finally {
@@ -61,7 +61,7 @@ export default function SignInScreen() {
       >
         <ThemedView style={styles.card}> {/* header stuff*/}
           <ThemedText type="title" style={styles.title}>Welcome to Grit 💪</ThemedText>
-            {/* username and password text fields */}
+          {/* username and password text fields */}
           <TextInput
             placeholder="Username"
             placeholderTextColor={"#FFF"}
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
   },
-  title: { textAlign: 'center', marginBottom: 4 },
+  title: { textAlign: 'center', marginBottom: 4, color: '#fff' },
   input: {
     color: '#fff',
     borderWidth: 1,
